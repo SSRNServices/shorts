@@ -1,39 +1,44 @@
 # Shorts
 
-A simple Python utility to split a video into smaller segments using FFmpeg.
+Python utilities to process videos using FFmpeg.
 
 ## Requirements
 
 - Python 3
-- FFmpeg installed and available in your `PATH`
+- FFmpeg and FFprobe installed and available in your `PATH`
 
-## Usage
+## Scripts
 
-1. Run the script:
+### 1. Split Video (`script.py`)
+Splits a video into smaller segments, adds padding, and overlays a "Part-XX" text label.
 
+**Usage:**
 ```bash
 python3 script.py
 ```
+1. Enter the full path to the video file when prompted.
+2. Enter the desired segment duration in seconds.
+3. Enter the TOP and BOTTOM padding height in pixels.
+4. Enter the padding color in HEX format (e.g., `#000000`).
+5. Choose a font for the "Part-XX" text from the given menu, or provide a custom font path.
 
-2. Enter the full path to the video file when prompted.
-3. Enter the desired segment duration in seconds.
-4. Enter the TOP and BOTTOM padding height in pixels.
-5. Enter the padding color in HEX format (e.g., `#000000`).
-6. Choose a font for the "Part-XX" text from the given menu, or provide a custom font path.
-7. The script creates a folder next to the input file named `<video_name>_parts` and saves the split segments there.
+**Output:**  
+Creates a folder next to the input file named `<video_name>_parts` containing the split segments.
+
+### 2. Trim Start of Video (`trim_start.py`)
+Removes a specified number of seconds from the beginning of a video without re-encoding (fast).
+
+**Usage:**
+```bash
+python3 trim_start.py
+```
+1. Enter the full path to the video file when prompted.
+2. Enter the number of seconds to remove from the start.
+
+**Output:**  
+Creates a new file next to the input file named `<video_name>_trimmed<extension>`.
 
 ## Notes
 
-- FFmpeg and FFprobe are required to be installed and available in your `PATH`.
-- The script adds top and bottom padding to each segment and overlays a "Part-XX" text label on the top padding.
 - The output files keep the original video extension.
-- If the file path is invalid or numeric inputs are incorrect, the script exits with an error message.
-
-## Example
-
-If you split `movie.mp4` with duration `10`, output files will be saved as:
-
-```
-movie_parts/Video-001.mp4
-movie_parts/Video-002.mp4
-```
+- If the file path is invalid or numeric inputs are incorrect, the scripts exit with an error message.
